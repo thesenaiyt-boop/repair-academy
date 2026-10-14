@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Repair Academy: espacio operativo de reparación de iPhone con guías verificables y trazabilidad de fuente.">
+  <title>Repair Academy | Repair Operations</title>
+  <link rel="preconnect" href="https://api.fontshare.com"><link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#app-main">Saltar al contenido</a>
+<div class="app-shell">
+  <aside class="sidebar" aria-label="Navegación principal">
+    <a class="brand" href="#dashboard" aria-label="Repair Academy, inicio"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Repair<br><b>Academy</b></span></a>
+    <nav class="nav" aria-label="Módulos">
+      <a data-route="dashboard" href="#dashboard"><span>▦</span> Centro operativo</a>
+      <a data-route="catalog" href="#catalog"><span>⌕</span> Catálogo de reparación</a>
+      <a data-route="workspace" href="#workspace"><span>↳</span> Espacio de trabajo</a>
+      <a data-route="safety" href="#safety"><span>!</span> Seguridad y control</a>
+    </nav>
+    <div class="sidebar-bottom"><div class="connection"><i></i><span>API bajo demanda</span></div><p>v1.0 · Operación de reparación</p></div>
+  </aside>
+  <div class="content-shell">
+    <header class="topbar"><button class="mobile-menu" id="mobile-menu" aria-label="Abrir navegación">☰</button><div><p class="crumb" id="crumb">Centro operativo</p><h1 id="page-title">Repair Operations</h1></div><div class="top-actions"><button class="theme-toggle" id="theme-toggle" aria-label="Cambiar a modo oscuro">◐</button><button class="operator"><span class="operator-avatar">RA</span><span class="operator-copy"><b>Operador</b><small>Sesión local</small></span></button></div></header>
+    <main id="app-main">
+      <section class="view active" data-view="dashboard">
+        <div class="dashboard-hero"><div><p class="overline">REPARACIÓN GUIADA Y TRAZABLE</p><h2>El procedimiento correcto.<br>Para el equipo correcto.</h2><p class="lead">Busca un dispositivo, valida la guía y trabaja con imágenes vinculadas al paso real. Sin fotos genéricas, sin resultados archivados como recomendación.</p><a class="button primary" href="#catalog">Iniciar una reparación <span>→</span></a></div><aside class="hero-status"><p>ESTADO DEL SISTEMA</p><div><i class="pulse"></i><b>Listo para consulta</b></div><small>La información se solicita al abrir una reparación.</small><dl><div><dt>Fuente primaria</dt><dd>iFixit API v2</dd></div><div><dt>Modo de idioma</dt><dd>Español primero</dd></div><div><dt>Persistencia</dt><dd>Sesión local</dd></div></dl></aside></div>
+        <section class="metric-grid" aria-label="Principios del sistema"><article><span class="metric-num">01</span><h3>Modelo preciso</h3><p>Busca por equipo y componente en vez de entregar una respuesta genérica.</p></article><article><span class="metric-num">02</span><h3>Fotos por paso</h3><p>La pantalla toma imágenes únicamente del objeto multimedia de cada paso.</p></article><article><span class="metric-num">03</span><h3>Control previo</h3><p>Herramientas, piezas, advertencias y estado se revisan antes de empezar.</p></article></section>
+        <section class="two-col"><article class="panel"><div class="panel-head"><div><p class="overline">INICIO RÁPIDO</p><h3>Flujo de trabajo</h3></div></div><ol class="flow"><li><b>01</b><div><strong>Identifica el dispositivo</strong><span>Modelo exacto y tipo de reparación</span></div></li><li><b>02</b><div><strong>Verifica la guía</strong><span>Calidad, pasos, idioma y trazabilidad</span></div></li><li><b>03</b><div><strong>Prepara la estación</strong><span>Herramientas, piezas y advertencias</span></div></li><li><b>04</b><div><strong>Documenta el cierre</strong><span>Progreso y revisión de entrega</span></div></li></ol></article><article class="panel attention"><p class="overline">REGLA DE OPERACIÓN</p><h3>Una imagen ausente no se rellena.</h3><p>Si una guía no incluye material visual para un paso, el sistema lo indica. Nunca reutiliza portada, fotos de otro modelo ni imágenes de otra reparación.</p><a href="#safety">Ver criterios de calidad →</a></article></section>
+      </section>
+      <section class="view" data-view="catalog">
+        <div class="view-intro"><div><p class="overline">EXPLORAR REPARACIONES</p><h2>Encuentra una guía adecuada</h2><p>Primero se consulta el índice interno de modelos. Después, la fuente devuelve la guía individual y sus recursos.</p></div></div>
+        <section class="search-console"><div class="search-main"><label for="search-input">Modelo, pieza o intervención</label><div><input id="search-input" type="search" placeholder="Ej. iPhone 13 batería, iPhone 15 pantalla"><button class="button primary" id="search-button">Buscar</button></div></div><div class="quick-set"><span>Accesos directos</span><div id="quick-actions"></div></div></section>
+        <section class="catalog-layout"><aside class="filter-panel"><p class="overline">FILTROS</p><label>Familia<select id="family-filter"><option value="all">Todos los modelos</option></select></label><label>Intervención<select id="component-filter"><option value="all">Todos los componentes</option><option value="battery">Batería</option><option value="screen">Pantalla</option><option value="charging">Puerto de carga</option><option value="camera">Cámara</option></select></label><button id="clear-filters" class="text-button">Limpiar filtros</button><hr><p class="filter-note">El catálogo es una ayuda de descubrimiento; la aplicación no declara que haya compatibilidad hasta validar la guía individual.</p></aside><div><div class="result-head"><h3>Modelos disponibles</h3><span id="catalog-count"></span></div><div class="device-grid" id="device-grid"></div></div></section>
+        <section class="search-results hidden" id="search-results-section"><div class="result-head"><h3>Guías evaluadas</h3><span id="guide-status"></span></div><div id="guide-results" class="guide-grid"></div></section>
+      </section>
+      <section class="view" data-view="workspace">
+        <div id="workspace-empty" class="workspace-empty"><p class="overline">ESPACIO DE TRABAJO</p><h2>Selecciona una guía para abrir una orden de reparación.</h2><p>El espacio agrupa prechequeo, herramientas, piezas, procedimiento, evidencia visual y cierre.</p><a class="button primary" href="#catalog">Abrir catálogo <span>→</span></a></div>
+        <div id="workspace-content" class="hidden"></div>
+      </section>
+      <section class="view" data-view="safety">
+        <div class="view-intro"><div><p class="overline">GOBERNANZA DEL PROCEDIMIENTO</p><h2>Seguridad, calidad y trazabilidad</h2><p>Las guías de terceros no sustituyen evaluación técnica ni procedimientos oficiales de servicio. Esta vista explica las reglas que aplica Repair Academy.</p></div></div>
+        <div class="policy-grid"><article><span>01</span><h3>Selección de guía</h3><p>Prioriza coincidencia de componente, una guía destacada, título de reemplazo, material de pasos y descarta guías archivadas o en progreso.</p></article><article><span>02</span><h3>Integridad visual</h3><p>Cada imagen queda conectada a <code>step.media.data</code>. Una ausencia se comunica como ausencia, sin sustituciones engañosas.</p></article><article><span>03</span><h3>Idioma transparente</h3><p>Se solicita primero la versión en español. Si no existe, se identifica el fallback en inglés antes de iniciar.</p></article><article><span>04</span><h3>Contenido seguro</h3><p>El contenido remoto se transforma a texto plano. La aplicación no inyecta HTML externo en la interfaz.</p></article><article><span>05</span><h3>Fuente visible</h3><p>La guía original, su autor si está disponible y la URL se conservan en el expediente de la reparación.</p></article><article><span>06</span><h3>Uso responsable</h3><p>Para piezas genuinas, manuales oficiales o operaciones comerciales, verifica los programas y términos del fabricante y de cada fuente.</p></article></div>
+      </section>
+    </main>
+    <footer>Repair Academy · interfaz independiente para consulta técnica · El contenido de guías permanece atribuido a su fuente.</footer>
+  </div>
+</div>
+<dialog id="lightbox"><div class="lightbox-card"><button id="lightbox-close" aria-label="Cerrar imagen">×</button><img id="lightbox-image" alt="Imagen ampliada de la guía"><p id="lightbox-caption"></p></div></dialog>
+<script src="assets/catalog.js"></script><script src="assets/app.js"></script>
+</body>
+</html>
