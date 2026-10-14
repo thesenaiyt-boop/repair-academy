@@ -1,52 +1,35 @@
-# Repair Academy
+# Repair Academy v2
 
-Explorador estático de guías de reparación de iPhone. Consulta la API pública de iFixit bajo demanda: no descarga ni replica el catálogo completo.
+Guías visuales de reparación de iPhone en español, construidas sobre la API pública de iFixit. Sitio estático: HTML + CSS + JS sin dependencias.
 
-## Ejecutar localmente
+## Correcciones respecto a la v1
 
-No requiere Node.js ni compilación.
+| Problema | Solución |
+|---|---|
+| Misma foto en todo (p. ej. batería) | Cada paso usa solo sus propias fotos (`step.media.data`). Sin foto → aviso neutro, nunca la imagen de otra guía. |
+| Guía equivocada para “batería” | Ranking: tipo *replacement*, título, categoría, destacada, con foto; penaliza archivadas, “mensajes de batería”, teardowns y accesorios. |
+| Guías archivadas/incompletas | Ocultas por defecto, con opción para mostrarlas. |
+| Idioma mezclado | Pide `langid=es`; si no existe, avisa “Texto original en inglés”. |
+| HTML inseguro de la API | Todo texto se convierte a texto plano; URLs solo `https`. |
+| Imágenes rotas | Fallback por imagen, sin sustituir por otra foto. |
+| Estados | Skeletons, vacío, error con reintento. |
 
-```bash
-git clone https://github.com/thesenaiyt-boop/repair-academy.git
-cd repair-academy
-python3 -m http.server 8080
-```
+## Funciones nuevas
 
-Abre `http://localhost:8080/repair-academy.html`.
+- Catálogo agrupado por generación, con foto y número de guías del propio modelo (carga perezosa).
+- “¿Qué le pasa a tu iPhone?”: síntoma → categoría → modelo.
+- Búsqueda inteligente (“iPhone 12 batería” abre directo la reparación).
+- Reparaciones recomendadas por categoría + filtros + búsqueda dentro del modelo.
+- Guía con resumen, seguridad, herramientas y piezas con miniatura.
+- Visor paso a paso: galería por paso, zoom, avisos destacados, progreso, teclado ← →, **modo taller** a pantalla completa.
+- Tema claro/oscuro, móvil primero, accesible.
 
-> Evita abrir el archivo con `file://`: algunos navegadores bloquean solicitudes remotas por CORS en ese modo.
+## Usar
 
-## Publicar en GitHub Pages
+Abre `index.html` con cualquier servidor estático (`python3 -m http.server`) o activa GitHub Pages en *Settings → Pages → main / root*.
 
-1. En GitHub, abre **Settings** del repositorio.
-2. Entra a **Pages**.
-3. En **Build and deployment**, selecciona **Deploy from a branch**.
-4. Elige la rama `main` y la carpeta `/ (root)`.
-5. Guarda los cambios.
-6. La aplicación estará disponible en la URL que GitHub Pages muestre para el repositorio. Abre `repair-academy.html` desde esa URL.
+La app necesita que la API de iFixit permita peticiones desde el navegador (CORS). Si tu navegador las bloquea, se mostrará el estado de error con reintento.
 
-## Criterios de calidad implementados
+## Licencia
 
-- Busca guías con la API v2.0 de iFixit.
-- Pide el contenido individual en español primero (`langid=es`) y conserva el idioma disponible si no existe traducción.
-- Puntúa resultados por coincidencia con el componente, guía destacada y tipo de reemplazo.
-- Excluye guías archivadas o en progreso de la selección principal.
-- No presenta fotos genéricas: cada paso utiliza solo `step.media.data` de esa guía.
-- Si un paso no tiene imagen, lo declara explícitamente y no repite la imagen de portada.
-- Evita insertar HTML remoto: convierte texto de la API a texto plano antes de renderizarlo.
-- Incluye estados de carga, error, vacío, imágenes faltantes, progreso de sesión, modo oscuro, teclado y diseño adaptable.
-
-## Arquitectura
-
-Todo vive en `repair-academy.html` para facilitar el despliegue estático:
-
-- `search()` consulta resultados y aplica un ranking de calidad.
-- `openGuide()` solicita una guía individual y construye la ficha.
-- `renderStep()` lee exclusivamente los recursos del paso correspondiente.
-- Las URL e información de autor se muestran como atribución hacia la guía fuente.
-
-## Licencia y atribución
-
-Las guías, imágenes y textos consultados pertenecen a sus respectivos autores en iFixit. iFixit publica su contenido bajo CC BY-NC-SA 3.0; antes de redistribuir, comercializar, almacenar masivamente o adaptar contenido, revisa la licencia vigente y las condiciones de la API de iFixit.
-
-Repair Academy es una interfaz independiente y no está afiliada con iFixit.
+Contenido de iFixit: CC BY-NC-SA 3.0, uso no comercial. Ver [NOTICE.md](NOTICE.md). El archivo `repair-academy.html` es la versión anterior, conservada como referencia.
